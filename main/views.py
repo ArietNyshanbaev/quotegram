@@ -1,6 +1,6 @@
-﻿from django.shortcuts import render
+﻿from django.shortcuts import render,get_object_or_404 ,redirect
+from django.core.urlresolvers import reverse
 from django.contrib import messages
-from django.shortcuts import get_object_or_404
 
 from .models import Quote
 
@@ -32,3 +32,10 @@ def edit_quote(request, quote_id):
 	args['quote'] = quote
 	return render(request, template, args)
 
+def delete_quote(request, quote_id):
+	""" Delete quote view """
+	args = {}
+	quote = get_object_or_404(Quote, pk=quote_id, user=request.user)
+	quote.delete()
+	messages.info(request, 'You have successfully deleted your quote.')
+	return redirect(reverse('main:main'))
