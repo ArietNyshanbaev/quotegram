@@ -11,7 +11,18 @@
 			<div class="row centered">
 				<a href="{% url 'main:detailed_quote' random_quote.id %}">
 					<div class="col-lg-8 col-lg-offset-2">
-						<p class="text-left">Random quote : {{random_quote.count_vote}} Score</p>
+						<p class="text-left">Random quote : {{random_quote.count_vote}} Score <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#detailed_random" aria-expanded="false" aria-controls="detailed_random">Detail</a></p>
+						<div class="collapse" id="detailed_random">
+						  <div class="well">
+						    {% for vote in random_quote.vote_set.all %}
+						    	{% if vote.is_upvote %}
+						    		<p class="text-left" style="color:green">upvote : {{ vote.user.username }}</p>
+						    	{% else %}
+						    		<p class="text-right" style="color:red">downvote : {{ vote.user.username }}</p>
+						    	{% endif %}
+						    {% endfor %}
+						  </div>
+						</div>
 						<h4>"{{random_quote.body|slice:"20"}}..."</h4>
 						<p>- {{random_quote.user.username}}</p>
 						<h1 class="text-right"><a href="{% url 'vote:vote' random_quote.id 1 %}"><i class="fa fa-thumbs-up"></a></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{% url 'vote:vote' random_quote.id 0 %}"><i class="fa fa-thumbs-down"></i></a></h1>
@@ -28,7 +39,18 @@
 			{% for quote in quotes %}
 				<a href="{% url 'main:detailed_quote' quote.id %}">
 					<div class="col-md-8 col-md-offset-2 well">
-						<p class="text-left">flop #{{forloop.counter}} quote : {{quote.count_vote}} Score</p>
+						<p class="text-left">flop #{{forloop.counter}} quote : {{quote.count_vote}} Score <a class="btn btn-sm btn-primary" data-toggle="collapse" data-target="#detailed_vote{{quote.pk}}" aria-expanded="false" aria-controls="detailed_vote{{quote.pk}}">Detail</a></p>
+						<div class="collapse" id="detailed_vote{{quote.pk}}">
+						  <div class="well">
+						    {% for vote in quote.vote_set.all %}
+						    	{% if vote.is_upvote %}
+						    		<p class="text-left" style="color:green">upvote : {{ vote.user.username }}</p>
+						    	{% else %}
+						    		<p class="text-right" style="color:red">downvote : {{ vote.user.username }}</p>
+						    	{% endif %}
+						    {% endfor %}
+						  </div>
+						</div>
 						<h4>"{{quote.body|slice:"20"}}..."</h4>
 						<p>- {{quote.user.username}}</p>
 						<p class="text-right"><a href="{% url 'vote:vote' quote.id 1 %}"><i class="fa fa-thumbs-up"></a></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{% url 'vote:vote' quote.id 0 %}"><i class="fa fa-thumbs-down"></i></a></p>
