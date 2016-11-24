@@ -7,8 +7,18 @@ from quote.models import Quote
 
 def main(request):
 	""" Main page view """
+	args = {}
+	quotes = Quote.objects.all()
+	args['quotes'] = quotes.order_by('?')[:10]
 	template = 'main/index.html'
-	return render(request, template, {})
+	return render(request, template, args)
+
+def detailed_quote(request, quote_id):
+	""" Main page view """
+	args = {}
+	args['quote'] = get_object_or_404(Quote, pk=quote_id)
+	template = 'main/detailed_quote.html'
+	return render(request, template, args)
 
 def top_ten(request):
 	""" Top ten votes view """

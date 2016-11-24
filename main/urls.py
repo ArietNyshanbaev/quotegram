@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^top_ten$', views.top_ten, name='top_ten'),
     url(r'^flop_ten$', views.flop_ten, name='flop_ten'),
     url(r'^last_quotes$', views.last_quotes, name='last_quotes'),
+    url(r'^detailed_quote/(?P<quote_id>.+)$', views.detailed_quote, name='detailed_quote'),
 ]

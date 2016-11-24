@@ -9,12 +9,14 @@
 	<div id="blue">
 		<div class="container">
 			<div class="row centered">
-				<div class="col-lg-8 col-lg-offset-2">
-				<p class="text-left">Random quote : {{random_quote.count_vote}} Score</p>
-				<h4>"{{random_quote.body|slice:"20"}}..."</h4>
-				<p>- {{random_quote.user.username}}</p>
-				<h1 class="text-right"><a href="{% url 'vote:vote' random_quote.id 1 %}"><i class="fa fa-thumbs-up"></a></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{% url 'vote:vote' random_quote.id 0 %}"><i class="fa fa-thumbs-down"></i></a></h1>
-				</div>
+				<a href="{% url 'main:detailed_quote' random_quote.id %}">
+					<div class="col-lg-8 col-lg-offset-2">
+						<p class="text-left">Random quote : {{random_quote.count_vote}} Score</p>
+						<h4>"{{random_quote.body|slice:"20"}}..."</h4>
+						<p>- {{random_quote.user.username}}</p>
+						<h1 class="text-right"><a href="{% url 'vote:vote' random_quote.id 1 %}"><i class="fa fa-thumbs-up"></a></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{% url 'vote:vote' random_quote.id 0 %}"><i class="fa fa-thumbs-down"></i></a></h1>
+					</div>
+				</a>
 			</div><!-- row -->
 		</div><!-- container -->
 	</div><!-- blue wrap -->
@@ -24,12 +26,14 @@
 		<div class="row centered">
 			<br><br>
 			{% for quote in quotes %}
-				<div class="col-md-8 col-md-offset-2 well">
-					<p class="text-left">top #{{forloop.counter}} quote : {{quote.count_vote}} Score</p>
-					<h4>"{{quote.body|slice:"20"}}..."</h4>
-					<p>- {{quote.user.username}}</p>
-					<p class="text-right"><a href="{% url 'vote:vote' quote.id 1 %}"><i class="fa fa-thumbs-up"></a></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{% url 'vote:vote' quote.id 0 %}"><i class="fa fa-thumbs-down"></i></a></p>
-				</div><!-- col-lg-4 -->
+				<a href="{% url 'main:detailed_quote' quote.id %}">
+					<div class="col-md-8 col-md-offset-2 well">
+						<p class="text-left">top #{{forloop.counter}} quote : {{quote.count_vote}} Score</p>
+						<h4>"{{quote.body|slice:"20"}}..."</h4>
+						<p>- {{quote.user.username}}</p>
+						<p class="text-right"><a href="{% url 'vote:vote' quote.id 1 %}"><i class="fa fa-thumbs-up"></a></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{% url 'vote:vote' quote.id 0 %}"><i class="fa fa-thumbs-down"></i></a></p>
+					</div><!-- col-lg-4 -->
+				</a>
 				{% endfor %}
 		</div><!-- row -->
 	</div><!-- container -->
