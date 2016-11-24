@@ -19,6 +19,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('main.urls', namespace='main')),
+    url(r'^quote/', include('quote.urls', namespace='quote')),
 ]
 
 if settings.DEBUG:
