@@ -13,7 +13,7 @@ def vote(request, quote_id, type):
 	quote = get_object_or_404(Quote, pk=quote_id)
 	if Vote.objects.filter(quote=quote, user=request.user).exists():
 		messages.info(request, 'You have already voted for this quote.')
-		return redirect(reverse('main:main'))
+		return redirect(request.META.get('HTTP_REFERER'))
 
 	if int(type) == 1:
 		Vote.objects.create(user=request.user, quote=quote)
@@ -25,4 +25,4 @@ def vote(request, quote_id, type):
 		messages.info(request, 'You have successfully downvoted for this quote.')
 		quote.count_vote = quote.count_vote - 1
 		quote.save()
-	return redirect(reverse('main:main'))
+	return redirect(request.META.get('HTTP_REFERER'))

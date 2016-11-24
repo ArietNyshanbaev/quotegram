@@ -13,20 +13,26 @@ def main(request):
 def top_ten(request):
 	""" Top ten votes view """
 	args = {}
-	args['quote'] = Quote.objects.all().order_by('count_vote')[:10]
+	quotes = Quote.objects.all()
+	args['random_quote'] = quotes.order_by('?')[0]
+	args['quotes'] = quotes.order_by('-count_vote')[:10]
 	template = 'main/top_ten.html'
 	return render(request, template, args)
 
 def flop_ten(request):
 	""" Flop ten votes view """
 	args = {}
-	args['quote'] = Quote.objects.all().order_by('-count_vote')[:10]
+	quotes = Quote.objects.all()
+	args['random_quote'] = quotes.order_by('?')[0]
+	args['quotes'] = quotes.order_by('count_vote')[:10]
 	template = 'main/flop_ten.html'
 	return render(request, template, args)
 
 def last_quotes(request):
 	""" Flop ten votes view """
 	args = {}
-	args['quote'] = Quote.objects.all().order_by('-id')[:10]
+	quotes = Quote.objects.all()
+	args['random_quote'] = quotes.order_by('?')[0]
+	args['quotes'] = quotes.order_by('-count_vote')
 	template = 'main/last_quotes.html'
 	return render(request, template, args)
