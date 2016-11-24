@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('main.urls', namespace='main')),
     url(r'^quote/', include('quote.urls', namespace='quote')),
+    url(r'^vote/', include('vote.urls', namespace='vote')),
 ]
 
 if settings.DEBUG:

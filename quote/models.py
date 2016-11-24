@@ -5,7 +5,7 @@ from django.db import models
 class Quote(models.Model):
 	""" Table to save quotes of users """
 	body = models.CharField(' Body of quote ', max_length=1000)
-	user =  models.ForeignKey(User,  verbose_name=' Quote of user ')
+	user =  models.ForeignKey(User,  verbose_name=' User of quote ')
 
 	def __unicode__(self):
 		return self.user.username + " : " +self.body[:50]
