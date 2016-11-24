@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{%load staticfiles%}
+{% block navigation %}
+	<li><a href="{% url 'main:top_ten' %}">TOP 10</a></li>
+	<li><a href="{% url 'main:flop_ten' %}">FLOP 1O </a></li>
+	<li><a href="{% url 'main:last_quotes' %}">LAST</a></li>
+{% endblock %}
+{% block content %}
+	<div id="headerwrap">
+		<div class="container">
+			<div class="row centered">
+				<div class="col-lg-4 col-lg-offset-4" style="margin-top: 70px">
+					<h2 style="color:white"> SignIn </h2>
+					<form action="" method="POST" role="form" >
+						{% csrf_token %}
+						<input type="text" name="username" placeholder="Enter username here " required="" class="form-control">
+						<br>
+						<input type="password" name="password" placeholder="Enter password here " required="" class="form-control">
+						<br>
+						<button class="btn btn-success form-control" type="submit">SignIn</button>
+					</form>
+					<h5 style="color:white">or</h5>
+					<a href="{% url 'auths:signup' %}"><button class="btn btn-primary form-control" type="submit">SignUp</button></a>
+				</div>
+
+				
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}	
+	

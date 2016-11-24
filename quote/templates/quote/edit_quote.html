@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {%load staticfiles%}
+{% block navigation %}
+	<li><a href="{% url 'main:top_ten' %}">TOP 10</a></li>
+	<li><a href="{% url 'main:flop_ten' %}">FLOP 1O </a></li>
+	<li><a href="{% url 'main:last_quotes' %}">LAST</a></li>
+{% endblock %}
 {% block content %}
 	<div id="headerwrap">
 		<div class="container">
@@ -11,10 +16,7 @@
 					<textarea maxlength="77" required="" name="quote_body" class="form-control" style="resize: none" rows=10 placeholder="Write your quote here ... ">{{quote.body}}</textarea>
 					<br>
 					<div class="row centered">
-					<div class="col-lg-3 col-lg-offset-1">
-						<button class="btn btn-default" style="display: inline;">Cancel</button>
-					</div>
-						<div class="col-lg-6 ">
+						<div class="col-lg-6 col-lg-offset-3">
 							<button class="btn btn-primary form-control" type="submit" style="display: inline;">Edit</button>
 						</div>
 					</div>

@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {%load staticfiles%}
+{% block navigation %}
+	<li><a href="{% url 'main:top_ten' %}">TOP 10</a></li>
+	<li><a href="{% url 'main:flop_ten' %}">FLOP 1O </a></li>
+	<li><a href="{% url 'main:last_quotes' %}">LAST</a></li>
+{% endblock %}
 {% block content %}
 	<div id="headerwrap">
 		<div class="container">

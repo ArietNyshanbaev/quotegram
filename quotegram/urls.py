@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^', include('main.urls', namespace='main')),
     url(r'^quote/', include('quote.urls', namespace='quote')),
     url(r'^vote/', include('vote.urls', namespace='vote')),
+    url(r'^auths/', include('auths.urls', namespace='auths')),
 ]
 
 if settings.DEBUG:
