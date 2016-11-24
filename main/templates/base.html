@@ -32,9 +32,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="">TOP 10</a></li>
-            <li><a href="">FLOP 1O </a></li>
-            <li><a href="">LAST</a></li>
+            <li><a href="{% url 'main:top_ten' %}">TOP 10</a></li>
+            <li><a href="{% url 'main:flop_ten' %}">FLOP 1O </a></li>
+            <li><a href="{% url 'main:last_quotes' %}">LAST</a></li>
             <li><a href="">SIGNIN</a></li>
             <li><a href="">SIGNUP</a></li>
             <li><a href="{% url 'quote:create_quote' %}"><i class="fa fa-pencil-square-o"></i></a></li>

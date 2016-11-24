@@ -18,7 +18,11 @@ def vote(request, quote_id, type):
 	if int(type) == 1:
 		Vote.objects.create(user=request.user, quote=quote)
 		messages.info(request, 'You have successfully upvoted for this quote.')
+		quote.count_vote = quote.count_vote + 1
+		quote.save()
 	else:
 		Vote.objects.create(user=request.user, quote=quote, is_upvote=False)
 		messages.info(request, 'You have successfully downvoted for this quote.')
+		quote.count_vote = quote.count_vote - 1
+		quote.save()
 	return redirect(reverse('main:main'))
