@@ -10,7 +10,7 @@ class Vote(models.Model):
 	is_upvote = models.BooleanField('is vote positive?', default=True)
 
 	def __unicode__(self):
-		return  self.quote + " : " + self.is_upvote
+		return self.user.username +  " ==> " + self.quote.body[:50] + " : " + str(self.is_upvote) 
 
 	class Meta:
 		verbose_name = "Vote"
