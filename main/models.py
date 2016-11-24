@@ -10,7 +10,7 @@ class Quote(models.Model):
 	user =  models.ForeignKey(User,  verbose_name=' Quote of user ')
 
 	def __unicode__(self):
-		return self.user.username + body[:100]
+		return self.user.username + " : " +self.body[:50]
 
 	class Meta:
 		verbose_name = "Quote"

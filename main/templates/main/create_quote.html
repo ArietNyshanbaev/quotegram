@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{%load staticfiles%}
+{% block content %}
+	<div id="headerwrap">
+		<div class="container">
+			<div class="row centered">
+				<div class="col-lg-6 col-lg-offset-3" style="margin-top: 70px">
+				<h2 style="color:white"> Quote </h2>
+				<form action="" method="POST" role="form" >
+					{% csrf_token %}
+					<textarea maxlength="999" required="" name="quote_body" class="form-control" style="resize: none" rows=10 placeholder="Write your quote here ... "></textarea>
+					<br>
+					<div class="row centered">
+						<div class="col-lg-6 col-lg-offset-3">
+							<button class="btn btn-success form-control" type="submit">Submit</button>
+						</div>
+					</div>
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}	
+	
