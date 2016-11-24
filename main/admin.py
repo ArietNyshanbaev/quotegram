@@ -1,8 +1,6 @@
-﻿from django.contrib import admin
+﻿# importing django modules
+from django.contrib import admin
+# importing Quotes models
+from .models import Quote
 
-from .models import Subscriber
-
-class SubscriberAdmin(admin.ModelAdmin):
-	""" Класс Регистрации Админки для Клеинтов """
-	list_display = ('name', 'telephone_number', 'email')
-admin.site.register(Subscriber, SubscriberAdmin)
+admin.site.register(Quote)

@@ -1,16 +1,17 @@
-﻿from __future__ import unicode_literals
-
+﻿# importing python modules
+from __future__ import unicode_literals
+# importing django modules
+from django.contrib.auth.models import User
 from django.db import models
 
-class Subscriber(models.Model):
-	""" Table to save subscribed users """
-	name = models.CharField(' Имя ', max_length=100)
-	telephone_number = models.CharField(' Номер телефона ', max_length=100)
-	email = models.CharField(' Email ', max_length=100)
+class Quote(models.Model):
+	""" Table to save quotes of users """
+	body = models.CharField(' Body of quote ', max_length=1000)
+	user =  models.ForeignKey(User,  verbose_name=' Quote of user ')
 
 	def __unicode__(self):
-		return self.name
+		return self.user.username + body[:100]
 
 	class Meta:
-		verbose_name = "Подписчик"
-		verbose_name_plural = "Подписчики"
+		verbose_name = "Quote"
+		verbose_name_plural = "Quotes"
