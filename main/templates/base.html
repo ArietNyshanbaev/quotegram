@@ -35,7 +35,11 @@
             {% block navigation %}
             {% endblock %}
             {% if user.is_authenticated %}
-              <li><a href="">{{request.user.username|upper}}</a></li>
+              {% if profile == True %}
+                <li class="active"><a href="{% url 'auths:profile' %}">{{request.user.username|upper}}</a></li>
+              {% else %}
+                <li><a href="{% url 'auths:profile' %}">{{request.user.username|upper}}</a></li>
+              {% endif %}
               <li><a data-toggle="modal" data-target="#signOutModal" href="#signOutModal">SIGNOUT</a></li>
             {% else %}
               <li><a href="{% url 'auths:signin' %}">SIGNIN</a></li>

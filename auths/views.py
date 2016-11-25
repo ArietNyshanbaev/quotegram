@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 # importing project modules 
 from custom_code.decorators import logout_required
+from quote.models import Quote
 
 @logout_required
 def signin(request, key='main'):
@@ -67,3 +68,12 @@ def signout(request):
 	""" Signout view """
 	logout(request)
 	return redirect(reverse("main:main"))
+
+@login_required(login_url=reverse_lazy('auths:signin'))
+def profile(request):
+	""" Profile view """
+	args = {}
+	args['quotes'] = Quote.objects.filter(user=request.user).order_by('-id')
+	args['profile'] = True
+	template = 'auths/profile.html'
+	return render(request, template, args)

@@ -11,8 +11,8 @@ def create_quote(request):
 	if request.POST:
 		quote_body = request.POST.get('quote_body', '')
 		quote = Quote.objects.create(body=quote_body, user=request.user)
-		messages.info(request, 'You have successfully crated this quote.')
-		return redirect(reverse('main:detailed_quote', kwargs={'quote_id':quote.id}))
+		messages.info(request, 'You have successfully crated quote.')
+		return redirect(reverse('auths:profile'))
 	template = 'quote/create_quote.html'
 	return render(request, template, {})
 
@@ -26,8 +26,8 @@ def edit_quote(request, quote_id):
 		quote_body = request.POST.get('quote_body', '')
 		quote.body = quote_body
 		quote.save()
-		messages.info(request, 'You have successfully edited this quote.')
-		return redirect(reverse('main:detailed_quote', kwargs={'quote_id':quote.id}))
+		messages.info(request, 'You have successfully edited quote.')
+		return redirect(reverse('auths:profile'))
 	template = 'quote/edit_quote.html'
 	args['quote'] = quote
 	return render(request, template, args)
@@ -39,6 +39,6 @@ def delete_quote(request, quote_id):
 	quote = get_object_or_404(Quote, pk=quote_id, user=request.user)
 	quote.delete()
 	messages.info(request, 'You have successfully deleted your quote.')
-	return redirect(reverse('main:main'))
+	return redirect(reverse('auths:profile'))
 
 

@@ -6,16 +6,13 @@
 	<li><a href="{% url 'main:last_quotes' %}">LAST</a></li>
 {% endblock %}
 {% block content %}
-	<div id="headerwrap">
+	<div id="blue">
 		<div class="container">
 			<div class="row centered">
-				<div class="col-lg-8 col-lg-offset-2">
-				<h1>Share your state through  <b>Quotes</b></h1>
-				<h2>Instead of fake sense photos </h2>
-				</div>
-			</div>
-		</div>
-	</div>
+				<h4>Profile</h4>
+			</div><!-- row -->
+		</div><!-- container -->
+	</div><!-- blue wrap -->
 
 
 	<div class="container w">
@@ -23,9 +20,14 @@
 			<br><br>
 			{% for quote in quotes %}
 				<div class="col-md-8 col-md-offset-2 well">
-					<p class="text-left">random #{{forloop.counter}} quote of 10 : {{quote.count_vote}} Score
+					<span style="display: inline-block;"><p class="text-left">random #{{forloop.counter}} quote of 10 : {{quote.count_vote}} Score
 					<a class="btn btn-sm btn-primary" data-toggle="collapse" data-target="#detailed_vote{{quote.pk}}" aria-expanded="false" aria-controls="detailed_vote{{quote.pk}}">Detail</a>
-					</p>
+					</p></span>
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+					<span class="text-right"><p style="display: inline-block;"><a href="{% url 'quote:edit_quote' quote.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></i></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{% url 'quote:delete_quote' quote.id %}"><i class="fa fa-times"></i></a></p></span>
+
 					<div class="collapse" id="detailed_vote{{quote.pk}}">
 					  <div class="well">
 					    {% for vote in quote.vote_set.all %}
@@ -43,6 +45,9 @@
 					</a>
 					<p class="text-right"><a href="{% url 'vote:vote' quote.id 1 %}"><i class="fa fa-thumbs-up"></a></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{% url 'vote:vote' quote.id 0 %}"><i class="fa fa-thumbs-down"></i></a></p>
 				</div><!-- col-lg-4 -->
+			{% empty %}
+				<h1>You have no quote yet.</h1>
+				<br><br><br><br>
 			{% endfor %}
 		</div><!-- row -->
 	</div><!-- container -->
